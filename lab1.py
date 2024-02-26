@@ -1,4 +1,16 @@
 import requests  # εισαγωγή της βιβλιοθήκης
+import datetime
+
+# unix_timestamp = 1614370123  # Example timestamp
+
+def convertTime(unix_timestamp):
+    # Convert Unix timestamp to a datetime object
+    datetime_obj = datetime.datetime.utcfromtimestamp(unix_timestamp)
+
+    # Convert datetime object to a formatted string
+    formatted_date = datetime_obj.strftime('%Y-%m-%d %H:%M:%S UTC')
+
+    return("Formatted Date:", formatted_date)
 
 #άσκηση
 def more(text):
@@ -42,6 +54,8 @@ if cookies:
     cookies = response.cookies
     for cookie in cookies:
         print("Cookie Name:", cookie.name)
-        print("Expiry Time (UNIX timestamp):", cookie.expires)
+        #format time if Value != None
+        time = convertTime(cookie.expires) if cookie.expires !=None else cookie.expires;
+        print("Expiry Time (UNIX timestamp):",time )
 else:
     print("No cookies found")
