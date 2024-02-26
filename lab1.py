@@ -23,9 +23,17 @@ with requests.get(url) as response:  # το αντικείμενο response
     html = response.text
     more(html)
 
+#server detection
 server = response.headers.get("Server")
 
 if server:
     print(f"The server is: {server}")
 else: print("No sever found")
 
+#cookies
+cookies = response.headers.get("Set-Cookie")
+
+if cookies:
+    print(f"The cookies are {cookies}")
+else:
+    print("No cookies found")
