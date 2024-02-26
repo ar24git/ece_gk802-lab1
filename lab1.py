@@ -22,3 +22,10 @@ if not url.startswith("http://"):
 with requests.get(url) as response:  # το αντικείμενο response
     html = response.text
     more(html)
+
+server = response.headers.get("Server")
+
+if server:
+    print(f"The server is: {server}")
+else: print("No sever found")
+
